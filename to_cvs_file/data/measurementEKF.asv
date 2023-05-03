@@ -1,0 +1,12 @@
+function [Xt_,Pt_] = measurementEKF(Xt,Pt,Zt,H,R)
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
+
+Yt = Zt - H * Xt;  
+St = H*Pt*transpose(H) + R; 
+Kt = Pt*transpose(H)/St; 
+
+Xt_ = Xt + Kt * Yt; 
+Pt_ = (eye(3) - Kt * H) * Pt; 
+
+end
